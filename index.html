@@ -6,55 +6,92 @@
     <title>Sana Bir Mesajım Var ✨</title>
     <style>
         body {
-            margin: 0;
-            background: #0f0c29;
-            background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            text-align: center;
-        }
+    background: #1a1a2e; /* Koyu lacivert/gece mavisi */
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
 
-        .container { padding: 20px; z-index: 1; }
+.btn-random {
+    background: #4ecca3; /* Tatlı bir nane yeşili/turkuaz */
+    color: #1a1a2e;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(78, 204, 163, 0.3);
+}
 
-        h1 { font-size: 3rem; text-shadow: 0 0 10px #ff0080; margin-bottom: 20px; }
+.btn-random:hover {
+    background: #45b393;
+    transform: translateY(-2px); /* Buton hafif yukarı zıplar */
+}
 
-        .message-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 600px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-
-        .music-player { margin-top: 30px; border-radius: 12px; overflow: hidden; }
-
-        .heart { color: #ff0080; font-size: 50px; cursor: pointer; transition: transform 0.3s; }
-        .heart:hover { transform: scale(1.2); }
+.heart {
+    color: #4ecca3; /* Kalbi de aynı renge çekelim veya bir yıldız '⭐' ile değiştirebilirsin */
+}
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="heart" onclick="alert('Seni çok seviyorum/değer veriyorum!')">❤️</div>
-        <h1>İyi ki Varsın!</h1>
-        
-        <div class="message-box">
-            <p id="quote">"Seninle geçen her an, en sevdiğim şarkının en güzel nakaratı gibi..."</p>
-            <p style="font-style: italic; opacity: 0.8;">— Buraya arkadaşın için yazmak istediğin o özel sözleri ekleyebilirsin.</p>
-        </div>
-
-        <div class="music-player">
-            <iframe src="https://open.spotify.com/embed/track/6UelLqGlWMvD4bdS89VgA8?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
+    <div class="heart">❤️</div>
+    <h1>İyi ki Varsın</h1>
+    
+    <div class="message-box">
+        <p id="quote">"Seninle her şey daha anlamlı..."</p>
     </div>
 
+    <button class="btn-random" onclick="getRandomSong()">🎵 Bana Bir Şarkı Öner</button>
+
+    <div id="music-container">
+        <p style="opacity: 0.6;">Butona basınca senin için bir şarkı seçeceğim...</p>
+    </div>
+
+    <script>
+    const songs = [
+        "https://open.spotify.com/embed/track/2Z76fWk47GvA8VAn1fA8Wj", // Nilshe - Anka
+        "https://open.spotify.com/embed/track/1P0U5L0sN5Z5XQ5N7aK7l6", // Mert Demir - Olmazlara Vuruluyorum
+        "https://open.spotify.com/embed/track/0X8qO8mX3F6vD7M7I8v7X7", // Rıza Tamer - Benden Sonra
+        "https://open.spotify.com/embed/track/5uCps733mclYofvN2W4J67", // Örnek: Benzer Tarz 1
+        "https://open.spotify.com/embed/track/4uLU6YMCBNI0iUv969vUTM"  // Örnek: Benzer Tarz 2
+    ];
+
+    const messages = [
+    "Senin şu bitmek bilmeyen pozitif enerjin için bir şarkı... ✨",
+    "Gülüşün gibi aşırı tatlı bir melodi bıraktım buraya. 🌸",
+    "Bu şarkı tam olarak senin o kendine has 'vibe'ını yansıtıyor! 💫",
+    "Dünyanın en şirin insanına küçük bir müzik molası. 🎀",
+    "Seninle dertleşmek her zaman en sevdiğim aktivite, bu da fon müziği olsun. ☕",
+    "Senin o doğal şıklığın ve zarafetin bu şarkıda gizli gibi... ✨",
+    "Modun düşükse bu şarkı seni senin kadar parlatmaya gelsin! 🌟",
+    "Hayatımdaki en renkli karakterlerden birisin, iyi ki varsın! 🎨"
+];
+
+    function getRandomSong() {
+        const container = document.getElementById('music-container');
+        const quoteElement = document.getElementById('quote');
+        
+        // Rastgele şarkı seç
+        const randomSongIndex = Math.floor(Math.random() * songs.length);
+        const selectedSong = songs[randomSongIndex];
+        
+        // Rastgele söz seç
+        const randomMessageIndex = Math.floor(Math.random() * messages.length);
+        const selectedMessage = messages[randomMessageIndex];
+        
+        // Sözü güncelle (küçük bir görsel efektle)
+        quoteElement.style.opacity = 0;
+        setTimeout(() => {
+            quoteElement.innerText = selectedMessage;
+            quoteElement.style.opacity = 1;
+        }, 300);
+
+        // Şarkıyı güncelle
+        container.innerHTML = `
+            <iframe style="border-radius:12px; transition: all 0.5s ease;" 
+                src="${selectedSong}" 
+                width="100%" height="152" 
+                frameBorder="0" allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+            </iframe>
+        `;
+    }
+</script>
 </body>
 </html>
