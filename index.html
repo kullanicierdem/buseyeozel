@@ -5,93 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sana Bir Mesajım Var ✨</title>
     <style>
+        /* Genel Arka Plan ve Yazı Ayarları */
         body {
-    background: #1a1a2e; /* Koyu lacivert/gece mavisi */
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-}
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #1a1a2e;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-.btn-random {
-    background: #4ecca3; /* Tatlı bir nane yeşili/turkuaz */
-    color: #1a1a2e;
-    font-weight: bold;
-    box-shadow: 0 0 15px rgba(78, 204, 163, 0.3);
-}
+        /* İçerik Konteyneri */
+        .container {
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            padding: 20px;
+        }
 
-.btn-random:hover {
-    background: #45b393;
-    transform: translateY(-2px); /* Buton hafif yukarı zıplar */
-}
+        /* Simge ve Başlık */
+        .heart {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #4ecca3;
+            animation: pulse 2s infinite;
+        }
 
-.heart {
-    color: #4ecca3; /* Kalbi de aynı renge çekelim veya bir yıldız '⭐' ile değiştirebilirsin */
-}
+        h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Mesaj Kutusu */
+        .message-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        #quote {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            transition: opacity 0.4s ease;
+            font-style: italic;
+            color: #e0e0e0;
+        }
+
+        /* Buton Tasarımı */
+        .btn-random {
+            background: #4ecca3;
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(78, 204, 163, 0.3);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-random:hover {
+            background: #45b393;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(78, 204, 163, 0.4);
+        }
+
+        /* Şarkı Alanı */
+        #music-container {
+            width: 100%;
+            min-height: 152px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Kalp Atışı Animasyonu */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Mobil Ayar */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            .message-box { padding: 30px 15px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="heart">❤️</div>
-    <h1>İyi ki Varsın</h1>
-    
-    <div class="message-box">
-        <p id="quote">"Seninle her şey daha anlamlı..."</p>
-    </div>
+    <div class="container">
+        <div class="heart">✨</div>
+        <h1>İYİ Kİ VARSIN</h1>
+        
+        <div class="message-box">
+            <p id="quote">"Seninle her şey daha anlamlı..."</p>
+        </div>
 
-    <button class="btn-random" onclick="getRandomSong()">🎵 Bana Bir Şarkı Öner</button>
+        <button class="btn-random" onclick="getRandomSong()">🎵 Bir Şarkı Seç</button>
 
-    <div id="music-container">
-        <p style="opacity: 0.6;">Butona basınca senin için bir şarkı seçeceğim...</p>
+        <div id="music-container">
+            <p style="padding-top: 60px; opacity: 0.5; font-size: 0.9rem;">Müzik kutusu hazır...</p>
+        </div>
     </div>
 
     <script>
-    const songs = [
-        "https://open.spotify.com/embed/track/2Z76fWk47GvA8VAn1fA8Wj", // Nilshe - Anka
-        "https://open.spotify.com/embed/track/1P0U5L0sN5Z5XQ5N7aK7l6", // Mert Demir - Olmazlara Vuruluyorum
-        "https://open.spotify.com/embed/track/0X8qO8mX3F6vD7M7I8v7X7", // Rıza Tamer - Benden Sonra
-        "https://open.spotify.com/embed/track/5uCps733mclYofvN2W4J67", // Örnek: Benzer Tarz 1
-        "https://open.spotify.com/embed/track/4uLU6YMCBNI0iUv969vUTM"  // Örnek: Benzer Tarz 2
-    ];
+        // BURAYA GERÇEK SPOTIFY EMBED LINKLERINI KOYMALISIN
+        const songs = [
+            "src="https://open.spotify.com/embed/track/6ldLZlXIkKaaM9Y4bErh07?utm_source=generator", // Nilshe - Anka (Örnek link)
+            "src="https://open.spotify.com/embed/track/6ldLZlXIkKaaM9Y4bErh07?utm_source=generator", // Mert Demir (Örnek link)
+            "src="https://open.spotify.com/embed/track/6ldLZlXIkKaaM9Y4bErh07?utm_source=generator"  // Rıza Tamer (Örnek link)
+        ];
 
-    const messages = [
-    "Senin şu bitmek bilmeyen pozitif enerjin için bir şarkı... ✨",
-    "Gülüşün gibi aşırı tatlı bir melodi bıraktım buraya. 🌸",
-    "Bu şarkı tam olarak senin o kendine has 'vibe'ını yansıtıyor! 💫",
-    "Dünyanın en şirin insanına küçük bir müzik molası. 🎀",
-    "Seninle dertleşmek her zaman en sevdiğim aktivite, bu da fon müziği olsun. ☕",
-    "Senin o doğal şıklığın ve zarafetin bu şarkıda gizli gibi... ✨",
-    "Modun düşükse bu şarkı seni senin kadar parlatmaya gelsin! 🌟",
-    "Hayatımdaki en renkli karakterlerden birisin, iyi ki varsın! 🎨"
-];
+        const messages = [
+            "Senin şu bitmek bilmeyen pozitif enerjin için bir şarkı... ✨",
+            "Gülüşün gibi aşırı tatlı bir melodi bıraktım buraya. 🌸",
+            "Bu şarkı tam olarak senin o kendine has 'vibe'ını yansıtıyor! 💫",
+            "Dünyanın en şirin insanına küçük bir müzik molası. 🎀",
+            "Seninle dertleşmek her zaman en sevdiğim aktivite... ☕",
+            "Senin o doğal şıklığın ve zarafetin bu şarkıda gizli gibi... ✨",
+            "Modun düşükse bu şarkı seni senin kadar parlatmaya gelsin! 🌟",
+            "Hayatımdaki en renkli karakterlerden birisin, iyi ki varsın! 🎨"
+        ];
 
-    function getRandomSong() {
-        const container = document.getElementById('music-container');
-        const quoteElement = document.getElementById('quote');
-        
-        // Rastgele şarkı seç
-        const randomSongIndex = Math.floor(Math.random() * songs.length);
-        const selectedSong = songs[randomSongIndex];
-        
-        // Rastgele söz seç
-        const randomMessageIndex = Math.floor(Math.random() * messages.length);
-        const selectedMessage = messages[randomMessageIndex];
-        
-        // Sözü güncelle (küçük bir görsel efektle)
-        quoteElement.style.opacity = 0;
-        setTimeout(() => {
-            quoteElement.innerText = selectedMessage;
-            quoteElement.style.opacity = 1;
-        }, 300);
+        function getRandomSong() {
+            const container = document.getElementById('music-container');
+            const quoteElement = document.getElementById('quote');
+            
+            const randomSongIndex = Math.floor(Math.random() * songs.length);
+            const selectedSong = songs[randomSongIndex];
+            
+            const randomMessageIndex = Math.floor(Math.random() * messages.length);
+            const selectedMessage = messages[randomMessageIndex];
+            
+            // Sözü değiştirme efekti
+            quoteElement.style.opacity = 0;
+            setTimeout(() => {
+                quoteElement.innerText = selectedMessage;
+                quoteElement.style.opacity = 1;
+            }, 400);
 
-        // Şarkıyı güncelle
-        container.innerHTML = `
-            <iframe style="border-radius:12px; transition: all 0.5s ease;" 
-                src="${selectedSong}" 
-                width="100%" height="152" 
-                frameBorder="0" allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
-            </iframe>
-        `;
-    }
-</script>
+            // Şarkıyı yükle
+            container.innerHTML = `
+                <iframe style="border-radius:12px" 
+                    src="${selectedSong}" 
+                    width="100%" height="152" 
+                    frameBorder="0" allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
+            `;
+        }
+    </script>
 </body>
 </html>
