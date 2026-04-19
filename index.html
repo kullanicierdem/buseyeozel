@@ -132,10 +132,10 @@
     <script>
         // BURAYA GERÇEK SPOTIFY EMBED LINKLERINI KOYMALISIN
         const songs = [
-            "src="https://open.spotify.com/intl-tr/track/6ldLZlXIkKaaM9Y4bErh07?si=6e0c21f819e94cae", // Nilshe - Anka (Örnek link)
-            "src="https://open.spotify.com/intl-tr/track/6ldLZlXIkKaaM9Y4bErh07?si=6e0c21f819e94cae", // Mert Demir (Örnek link)
-            "src="https://open.spotify.com/intl-tr/track/6ldLZlXIkKaaM9Y4bErh07?si=6e0c21f819e94cae"  // Rıza Tamer (Örnek link)
-        ];
+        "https://www.youtube.com/embed/hBnrtF-37hg?si=dd8gZVKzmIf4Nk_V", // Nilshe - Anka
+        "https://www.youtube.com/embed/qjIXTe6IRUM?si=ifC2gzzarCADesg3", // Mert Demir
+        "https://www.youtube.com/embed/t5tLvVSWWkU?si=HfriYxxoWHMtUK7y"  // Rıza Tamer
+    ];
 
         const messages = [
             "Senin şu bitmek bilmeyen pozitif enerjin için bir şarkı... ✨",
@@ -148,34 +148,35 @@
             "Hayatımdaki en renkli karakterlerden birisin, iyi ki varsın! 🎨"
         ];
 
-        function getRandomSong() {
-            const container = document.getElementById('music-container');
-            const quoteElement = document.getElementById('quote');
+       function getRandomSong() {
+        const container = document.getElementById('music-container');
+        const quoteElement = document.getElementById('quote');
+        
+        const randomSongIndex = Math.floor(Math.random() * songs.length);
+        const selectedSong = songs[randomSongIndex];
+        
+        const randomMessageIndex = Math.floor(Math.random() * messages.length);
+        const selectedMessage = messages[randomMessageIndex];
             
-            const randomSongIndex = Math.floor(Math.random() * songs.length);
-            const selectedSong = songs[randomSongIndex];
-            
-            const randomMessageIndex = Math.floor(Math.random() * messages.length);
-            const selectedMessage = messages[randomMessageIndex];
-            
-            // Sözü değiştirme efekti
-            quoteElement.style.opacity = 0;
-            setTimeout(() => {
-                quoteElement.innerText = selectedMessage;
-                quoteElement.style.opacity = 1;
-            }, 400);
-
-            // Şarkıyı yükle
-            container.innerHTML = `
-                <iframe style="border-radius:12px" 
-                    src="${selectedSong}" 
-                    width="100%" height="152" 
-                    frameBorder="0" allowfullscreen="" 
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                    loading="lazy">
-                </iframe>
-            `;
-        }
+          // Mesaj güncelleme
+        quoteElement.style.opacity = 0;
+        setTimeout(() => {
+            quoteElement.innerText = selectedMessage;
+            quoteElement.style.opacity = 1;
+        }, 400);
+           
+          // YouTube Player (Şarkıyı buraya yüklüyoruz)
+        container.innerHTML = `
+            <iframe width="100%" height="250" 
+                src="${selectedSong}?autoplay=1" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen 
+                style="border-radius:12px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+            </iframe>
+        `;
+    }
     </script>
 </body>
 </html>
