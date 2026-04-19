@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sana Bir Mesajım Var Buse ✨</title>
+    <title>Sana Bir Mesajım Var Buse✨</title>
     <style>
-        /* Genel Arka Plan ve Yazı Ayarları */
         body {
             margin: 0;
             padding: 0;
@@ -13,176 +12,110 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: #1a1a2e;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        /* İçerik Konteyneri */
-        .container {
-            width: 90%;
-            max-width: 450px;
             text-align: center;
-            padding: 20px;
         }
 
-        /* Simge ve Başlık */
-        .heart {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: #4ecca3;
-            animation: pulse 2s infinite;
-        }
+        .container { width: 90%; max-width: 550px; padding: 20px; }
 
-        h1 {
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
+        .heart { font-size: 3rem; margin-bottom: 10px; color: #4ecca3; animation: pulse 2s infinite; }
 
-        /* Mesaj Kutusu */
         .message-box {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 40px 25px;
+            padding: 30px;
             border-radius: 20px;
-            margin-bottom: 30px;
-            min-height: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        #quote {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            transition: opacity 0.4s ease;
-            font-style: italic;
-            color: #e0e0e0;
-        }
+        #quote { font-size: 1.2rem; font-style: italic; transition: opacity 0.5s; color: #e0e0e0; }
 
-        /* Buton Tasarımı */
         .btn-random {
             background: #4ecca3;
             color: #1a1a2e;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 35px;
             border-radius: 50px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             box-shadow: 0 4px 15px rgba(78, 204, 163, 0.3);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
-        .btn-random:hover {
-            background: #45b393;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(78, 204, 163, 0.4);
-        }
+        .btn-random:hover { transform: translateY(-3px); background: #45b393; }
 
-        /* Şarkı Alanı */
-        #music-container {
-            width: 100%;
-            min-height: 152px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: rgba(0,0,0,0.2);
-        }
+        #music-container { width: 100%; border-radius: 15px; overflow: hidden; background: rgba(0,0,0,0.3); }
 
-        /* Kalp Atışı Animasyonu */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* Mobil Ayar */
-        @media (max-width: 480px) {
-            h1 { font-size: 1.5rem; }
-            .message-box { padding: 30px 15px; }
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="heart">✨</div>
-        <h1>İYİ Kİ VARSIN BUSE</h1>
+        <h1 style="font-weight: 300; letter-spacing: 2px;">BUSE HANIM'A ÖZEL</h1>
         
         <div class="message-box">
-            <p id="quote">"Seninle her şey daha anlamlı..."</p>
+            <p id="quote">Butona her bastığında senin için yeni bir şarkı ve bir not çıkacak...</p>
         </div>
 
-        <button class="btn-random" onclick="getRandomSong()">🎵 Bir Şarkı Seç</button>
+        <button class="btn-random" onclick="nextStep()">🎵 Sıradaki Sürprizi Gör</button>
 
         <div id="music-container">
-            <p style="padding-top: 60px; opacity: 0.5; font-size: 0.9rem;">Müzik kutusu hazır...</p>
-        </div>
+            </div>
     </div>
 
     <script>
-        // BURAYA GERÇEK SPOTIFY EMBED LINKLERINI KOYMALISIN
-        const songs = [
-        "https://www.youtube.com/embed/hBnrtF-37hg?si=dd8gZVKzmIf4Nk_V",
-        "https://www.youtube.com/embed/qjIXTe6IRUM?si=ifC2gzzarCADesg3",
-        "https://www.youtube.com/embed/t5tLvVSWWkU?si=HfriYxxoWHMtUK7y",
-        "https://www.youtube.com/embed/wMdnGwOuhoI?si=Mt-sLji-zHqINYdS",
-        "https://www.youtube.com/embed/12dYpQabC90?si=OSCa9v7oFKil1SOV",
-        "https://www.youtube.com/embed/2fEywKZnIVM?si=8-wgrVwJyErt5XKQ",
-        "https://www.youtube.com/embed/CmY6Tkqkfrs?si=IRC_jg2ciM6-tbnA",
-        "https://www.youtube.com/embed/dVhpmz23n1s?si=Mk3mwAft0TsDLbIQ",
-            
-    ];
-
-        const messages = [
-            "Senin şu bitmek bilmeyen pozitif enerjin için bir şarkı... ✨",
-            "Gülüşün gibi aşırı tatlı bir melodi bıraktım buraya. 🌸",
-            "Bu şarkı tam olarak senin o kendine has 'vibe'ını yansıtıyor! 💫",
-            "Dünyanın en şirin insanına küçük bir müzik molası. 🎀",
-            "Seninle dertleşmek her zaman en sevdiğim aktivite... ☕",
-            "Senin o doğal şıklığın ve zarafetin bu şarkıda gizli gibi... ✨",
-            "Modun düşükse bu şarkı seni senin kadar parlatmaya gelsin! 🌟",
-            "Hayatımdaki en renkli karakterlerden birisin, iyi ki varsın! 🎨"
+        // 8 Şarkı ve 8 Söz (Sıralı çalışacak)
+        const content = [
+            { song: "https://www.youtube.com/embed/hBnrtF-37hg?si=dd8gZVKzmIf4Nk_V", text: "Senin şu bitmek bilmeyen pozitif enerjin dünyayı güzelleştiriyor. ✨" },
+            { song: "https://www.youtube.com/embed/qjIXTe6IRUM?si=ifC2gzzarCADesg3", text: "Gülüşün o kadar içten ki, insanın modunu saniyeler içinde yükseltiyor. 🌸" },
+            { song: "https://www.youtube.com/embed/t5tLvVSWWkU?si=HfriYxxoWHMtUK7y", text: "Senin o kendine has duruşun ve zarafetin her zaman fark ediliyor. 💫" },
+            { song: "https://www.youtube.com/embed/wMdnGwOuhoI?si=Mt-sLji-zHqINYdS", text: "Detaylara verdiğin önem ve ince düşüncelerin seni çok özel kılıyor. 🎀" },
+            { song: "https://www.youtube.com/embed/12dYpQabC90?si=OSCa9v7oFKil1SOV", text: "Hayatımdaki en renkli ve en samimi insan olduğun içi teşekkür ederim. 🎨" },
+            { song: "https://www.youtube.com/embed/2fEywKZnIVM?si=8-wgrVwJyErt5XKQ", text: "Seninle konuşmak, en sevdiğim şarkıyı dinlemek gibi huzur verici. ☕" },
+            { song: "https://www.youtube.com/embed/CmY6Tkqkfrs?si=IRC_jg2ciM6-tbnA", text: "Işığınla çevrendeki herkese neşe saçıyorsun, hep böyle kal! 🌟" },
+            { song: "https://www.youtube.com/embed/dVhpmz23n1s?si=Mk3mwAft0TsDLbIQ", text: "Bu da listenin sonu ama senin güzelliğin ve tatlılığın sonsuz... ❤️" }
         ];
 
-       function getRandomSong() {
-        const container = document.getElementById('music-container');
-        const quoteElement = document.getElementById('quote');
-        
-        const randomSongIndex = Math.floor(Math.random() * songs.length);
-        const selectedSong = songs[randomSongIndex];
-        
-        const randomMessageIndex = Math.floor(Math.random() * messages.length);
-        const selectedMessage = messages[randomMessageIndex];
+        let currentIndex = 0;
+
+        function nextStep() {
+            const container = document.getElementById('music-container');
+            const quoteElement = document.getElementById('quote');
             
-          // Mesaj güncelleme
-        quoteElement.style.opacity = 0;
-        setTimeout(() => {
-            quoteElement.innerText = selectedMessage;
-            quoteElement.style.opacity = 1;
-        }, 400);
-           
-          // YouTube Player (Şarkıyı buraya yüklüyoruz)
-        container.innerHTML = `
-            <iframe width="100%" height="250" 
-                src="${selectedSong}?autoplay=1" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen 
-                style="border-radius:12px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
-            </iframe>
-        `;
-    }
+            // Sırayla gitmek için
+            const currentItem = content[currentIndex];
+
+            // Yazıyı güncelle
+            quoteElement.style.opacity = 0;
+            setTimeout(() => {
+                quoteElement.innerText = currentItem.text;
+                quoteElement.style.opacity = 1;
+            }, 400);
+
+            // Videoyu güncelle
+            container.innerHTML = `
+                <iframe width="100%" height="300" 
+                    src="${currentItem.song}?autoplay=1" 
+                    frameborder="0" allow="autoplay; encrypted-media" 
+                    allowfullscreen style="border-radius:15px;">
+                </iframe>
+            `;
+
+            // Index'i arttır (8'e ulaşınca başa döner)
+            currentIndex = (currentIndex + 1) % content.length;
+        }
     </script>
 </body>
 </html>
