@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Mesajım Var ✨</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0f0c29;
+            background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        .container { padding: 20px; z-index: 1; }
+
+        h1 { font-size: 3rem; text-shadow: 0 0 10px #ff0080; margin-bottom: 20px; }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .music-player { margin-top: 30px; border-radius: 12px; overflow: hidden; }
+
+        .heart { color: #ff0080; font-size: 50px; cursor: pointer; transition: transform 0.3s; }
+        .heart:hover { transform: scale(1.2); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heart" onclick="alert('Seni çok seviyorum/değer veriyorum!')">❤️</div>
+        <h1>İyi ki Varsın!</h1>
+        
+        <div class="message-box">
+            <p id="quote">"Seninle geçen her an, en sevdiğim şarkının en güzel nakaratı gibi..."</p>
+            <p style="font-style: italic; opacity: 0.8;">— Buraya arkadaşın için yazmak istediğin o özel sözleri ekleyebilirsin.</p>
+        </div>
+
+        <div class="music-player">
+            <iframe src="https://open.spotify.com/embed/track/6UelLqGlWMvD4bdS89VgA8?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </div>
+
+</body>
+</html>
